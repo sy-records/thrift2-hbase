@@ -1,0 +1,40 @@
+{
+    "name": "sy-records/thrift2-hbase",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "hyperf",
+        "hbase"
+    ],
+    "description": "thrift for ali hbase+",
+    "authors": [
+        {
+            "name": "Luffy",
+            "email": "52o@qq52o.cn",
+            "homepage": "https://qq52o.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sszh\\Alihbasethrift\\": "src/",
+            "Thrift\\": "src/Thrift/",
+            "Luffy\\Thrift2Hbase\\": "src/Thrift2Hbase/"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "hyperf/contract": "~1.1.0",
+        "hyperf/utils": "~1.1.0",
+        "psr/container": "^1.0"
+    },
+    "extra": {
+        "hyperf": {
+            "config": "Sszh\\Alihbasethrift\\ConfigProvider"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
