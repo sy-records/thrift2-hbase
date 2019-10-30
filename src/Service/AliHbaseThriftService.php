@@ -16,18 +16,19 @@ use Luffy\Thrift2Hbase\THBaseServiceClient;
 
 class AliHbaseThriftService implements AliHbaseThriftInterface
 {
-	/**
-	 * @var THBaseServiceClient
-	 */
+    /**
+     * @var THBaseServiceClient
+     */
     private $client;
 
-	/**
-	 * AliHbaseThriftService constructor.
-	 * @param $host
-	 * @param $port
-	 * @param $key_id
-	 * @param $signature
-	 */
+    /**
+     * AliHbaseThriftService constructor.
+     *
+     * @param $host
+     * @param $port
+     * @param $key_id
+     * @param $signature
+     */
     public function __construct($host,$port,$key_id,$signature)
     {
         $headers = array('ACCESSKEYID' => $key_id,'ACCESSSIGNATURE' => $signature);
@@ -39,23 +40,23 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
         $this->client = new THBaseServiceClient($protocol);
     }
 
-	/**
-	 * @return THBaseServiceClient
-	 */
+    /**
+     * @return THBaseServiceClient
+     */
     public function getClient()
     {
         return $this->client;
     }
 
-	/**
-	 * @param $name
-	 * @param $arguments
-	 * @return mixed
-	 * @throws MethodNotFoundException
-	 */
+    /**
+     * @param  $name
+     * @param  $arguments
+     * @return mixed
+     * @throws MethodNotFoundException
+     */
     public function __call($name, $arguments)
     {
-        if (method_exists($this->client,$name)) {
+        if (method_exists($this->client, $name)) {
             return $this->client->$name(...$arguments);
         }else{
             throw new MethodNotFoundException("method {$name} not found in ali hbase");
