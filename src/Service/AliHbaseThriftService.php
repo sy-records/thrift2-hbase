@@ -38,6 +38,7 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
         $transport = new TBufferedTransport($socket);
         $protocol = new TBinaryProtocol($transport);
         $this->client = new THBaseServiceClient($protocol);
+		$transport->open();
     }
 
     /**
