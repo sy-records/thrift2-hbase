@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Sszh\\Alihbasethrift\\": "src/",
+            "Luffy\\AliHbaseThrift\\": "src/",
             "Thrift\\": "src/Thrift/",
             "Luffy\\Thrift2Hbase\\": "src/Thrift2Hbase/"
         }
@@ -30,7 +30,7 @@
     },
     "extra": {
         "hyperf": {
-            "config": "Sszh\\Alihbasethrift\\ConfigProvider"
+            "config": "Luffy\\AliHbaseThrift\\ConfigProvider"
         }
     },
     "config": {
