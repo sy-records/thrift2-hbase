@@ -29,16 +29,15 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
      * @param $key_id
      * @param $signature
      */
-    public function __construct($host,$port,$key_id,$signature)
+    public function __construct($host, $port, $key_id, $signature)
     {
-        $headers = array('ACCESSKEYID' => $key_id,'ACCESSSIGNATURE' => $signature);
+        $headers = array('ACCESSKEYID' => $key_id, 'ACCESSSIGNATURE' => $signature);
 
         $socket = new THttpClient($host, $port);
         $socket->addHeaders($headers);
         $transport = new TBufferedTransport($socket);
         $protocol = new TBinaryProtocol($transport);
         $this->client = new THBaseServiceClient($protocol);
-		$transport->open();
     }
 
     /**

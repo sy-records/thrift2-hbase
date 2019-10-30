@@ -9,5 +9,5 @@ namespace Luffy\AliHbaseThrift\Serivce;
 
 interface AliHbaseThriftInterface
 {
-    
+
 }
