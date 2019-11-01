@@ -13,6 +13,8 @@ use Thrift\Protocol\TBinaryProtocol;
 use Thrift\Transport\TBufferedTransport;
 use Thrift\Transport\THttpClient;
 use Luffy\Thrift2Hbase\THBaseServiceClient;
+use Luffy\Thrift2Hbase\TGet;
+use Luffy\Thrift2Hbase\TPut;
 
 class AliHbaseThriftService implements AliHbaseThriftInterface
 {
@@ -47,6 +49,89 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
     {
         return $this->client;
     }
+
+    public function getRow($tableName, $rowKey): array
+    {
+        $get = new TGet();
+        $get->row = $rowKey;
+
+        $arr = $this->client->get($tableName, $get);
+        $data = [];
+        $results = $arr->columnValues;
+        foreach ($results as $result) {
+            $qualifier = (string)$result->qualifier;
+            $value = $result->value;
+            $data[$qualifier] = $value;
+        }
+        return $data;
+    }
+
+    public function getTableNamesByNamespace($namespace): array
+    {
+        $arr = $this->client->getTableNamesByNamespace($namespace);
+        $tables = [];
+        foreach ($arr as $item) {
+            array_push($tables, (string)$item->qualifier);
+        }
+        return $tables;
+    }
+
+    public function getColumn($tableName, $rowKey, $timestamp = 0, $columns = []): array
+    {
+        $get = new TGet();
+        $get->row = $rowKey;
+
+        if(!empty($timestamp)) {
+        	$get->timestamp = $timestamp;
+		}
+
+		$tcolumnArr = [];
+        foreach ($columns as $column) {
+			$family = $column['family'] ?? null;
+			$qualifier = $column['qualifier'] ?? null;
+			$timestamp_ = $column['timestamp'] ?? null;
+			$tcolumn_obj = new \Luffy\Thrift2Hbase\TColumn();
+			$tcolumn_obj->family = $family;
+			$tcolumn_obj->qualifier = $qualifier;
+			$tcolumn_obj->timestamp = $timestamp_;
+        	array_push($tcolumnArr, $tcolumn_obj);
+		}
+
+        $get->columns = $tcolumnArr;
+
+        $arr = $this->client->get($tableName, $get);
+        $data = [];
+        $results = $arr->columnValues;
+        foreach ($results as $result) {
+            $qualifier = (string)$result->qualifier;
+            $value = $result->value;
+            $data[$qualifier] = $value;
+        }
+        return $data;
+    }
+
+	public function putValue(string $tableName, string $rowKey, string $family, array $qualifierValue = []): void
+	{
+		$put = new TPut();
+		$put->row = $rowKey;
+
+		$tcolumnArr = [];
+		foreach ($qualifierValue as $key => $value) {
+			$tcolumn_obj = new \Luffy\Thrift2Hbase\TColumnValue();
+			$tcolumn_obj->family = $family;
+			$tcolumn_obj->qualifier = $key;
+			$tcolumn_obj->value = $value;
+			array_push($tcolumnArr, $tcolumn_obj);
+		}
+		$put->columnValues = $tcolumnArr;
+
+		$this->client->put($tableName, $put);
+    }
+
+	public function getMultiple(string $tableName, array $columns = []) : array
+	{
+
+	}
 
     /**
      * @param  $name
