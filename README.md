@@ -3,6 +3,12 @@ thrift2-hbase component for hyperf.
 
 > 此 repo 为使用阿里云云数据库 Hbase 性能增强版，HBase 增强版使用的 Thrift 接口定义是 HBase 的 `thrift2`
 
+# 安装
+
+```shell
+composer require sy-records/thrift2-hbase -vvv
+```
+
 ## 在 Hyperf 中使用
 
 ### 配置文件
