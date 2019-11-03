@@ -46,13 +46,30 @@ class Get
 
         // 查询某个字段
         $columnArray = [
-        [
-        "family" => $family,
-        "qualifier" => "async_pay_status",
-        ],
+			[
+				"family" => $family,
+				"qualifier" => "async_pay_status",
+			],
         ];
         $data = $this->aliHbaseThriftService->getColumn($table_name, $row_key, 0, $columnArray);
         var_dump($data);
+
+        $gets_data = [
+			[
+				"row" => $row_key,
+				"columns" => [
+					[
+						"family" => $family,
+						"qualifier" => "async_pay_status",
+					],
+				]
+			],
+			[
+				"row" => "95523f245B2497157248551200014330"
+			],
+		];
+        $gets = $this->aliHbaseThriftService->getMultiple($table_name, $gets_data);
+        var_dump($gets);
     }
 }
 $config = include "config.php";
