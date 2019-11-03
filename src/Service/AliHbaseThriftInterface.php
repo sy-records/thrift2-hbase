@@ -34,7 +34,12 @@ interface AliHbaseThriftInterface
      */
     public function getColumn(string $tableName, string $rowKey, int $timestamp = 0, array $columns = []): array;
 
-    public function getMultiple(string $tableName, array $columns = []): array;
+	/**
+	 * @param string $tableName
+	 * @param array $params
+	 * @return array
+	 */
+    public function getMultiple(string $tableName, array $params = []): array;
 
     /**
      * @param string $tableName
@@ -43,4 +48,18 @@ interface AliHbaseThriftInterface
      * @param array  $qualifierValue
      */
     public function putValue(string $tableName, string $rowKey, string $family, array $qualifierValue = []): void;
+
+	/**
+	 * @param string $tableName
+	 * @param array $params
+	 */
+	public function putMultiple(string $tableName, array $params = []): void;
+
+	/**
+	 * @param string $tableName
+	 * @param string|null $rowKey
+	 */
+	public function deleteByRowKey(string $tableName, string $rowKey = null): void;
+
+	public function deleteSingle(string $tableName, string $rowKey = null, array $columns = []): void;
 }
