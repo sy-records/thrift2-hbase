@@ -43,10 +43,10 @@ interface AliHbaseThriftInterface
 
 	/**
 	 * @param string $tableName
-	 * @param array $params
+	 * @param array $rowKeys
 	 * @return array
 	 */
-    public function getRowMultiple(string $tableName, array $params = []): array;
+    public function getRowMultiple(string $tableName, array $rowKeys = []): array;
 
     /**
      * @param string $tableName

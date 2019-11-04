@@ -177,9 +177,33 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
 		return $tgets_data;
     }
 
-	public function getRowMultiple(string $tableName, array $params = []): array
+	/**
+	 * @param string $tableName
+	 * @param array $rowKeys
+	 * @return array
+	 * @throws \Luffy\Thrift2Hbase\TIOError
+	 */
+	public function getRowMultiple(string $tableName, array $rowKeys = []): array
 	{
-
+		$tgets = [];
+		foreach ($rowKeys as $row) {
+			$get = new TGet();
+			$get->row = $row ?? null;
+			array_push($tgets, $get);
+		}
+		$arr = $this->client->getMultiple($tableName, $tgets);
+		$tgets_data = [];
+		foreach ($arr as $item) {
+			$data = [];
+			$results = $item->columnValues;
+			foreach ($results as $result) {
+				$qualifier = (string)$result->qualifier;
+				$value = $result->value;
+				$data[$qualifier] = $value;
+			}
+			$tgets_data[$item->row] = $data;
+		}
+		return $tgets_data;
     }
 
 	/**

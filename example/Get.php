@@ -70,6 +70,10 @@ class Get
 		];
         $gets = $this->aliHbaseThriftService->getMultiple($table_name, $gets_data);
         var_dump($gets);
+
+		$rows = ['955235245B2497157248538900037777','95523f245B2497157248551200014976'];
+        $get_rows = $this->aliHbaseThriftService->getRowMultiple($table_name, $rows);
+        var_dump($get_rows);
     }
 }
 $config = include "config.php";
