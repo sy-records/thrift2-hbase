@@ -55,3 +55,72 @@ ALIHBASE_SIGNATURE=root
 |   ALIHBASE_PORT    |  int   |   9190    |                         PHP 操作端口                         |
 |   ALIHBASE_KEYID   | string |   root    |                            用户名                            |
 | ALIHBASE_SIGNATURE | string |   root    |                             密码                             |
+
+### 代码提示
+
+在 PhpStorm 中直接操作是没有代码提示的，可添加`@var`使得编辑器增加代码提示，如下所示
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controller;
+
+use Hyperf\Di\Annotation\Inject;
+use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftInterface;
+
+class IndexController extends AbstractController
+{
+	/**
+	 * 使用注解时
+	 * @Inject()
+	 * @var AliHbaseThriftInterface
+	 */
+	private $hbase;
+
+	public function index()
+    {
+		/**
+		 * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
+		 */
+		$client = $this->hbase->getClient();
+
+		/**
+		 * @var $hbase \Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService
+		 */
+		$hbase = make(AliHbaseThriftInterface::class);
+
+		/**
+		 * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
+		 */
+		$client = $hbase->getClient();
+
+		$res = $client->get("scanface:test", new \Luffy\Thrift2Hbase\TGet(["row"=> "001"]));
+		var_dump($res->columnValues);
+    }
+}
+```
+
+这样操作`$client`或`$hbase`时，编辑器就会给出对应的代码提示。
+
+## 在其他框架中使用
+
+### 配置文件
+
+在对应的配置文件中添加如下配置信息，参数说明见上文
+
+```php
+return [
+	'host' => "localhost",
+	'port' => 9190,
+	'key_id' => 'root',
+	'signature' => 'root',
+];
+```
+
+### 使用
+
+```php
+$hbase = new Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService($config['host'], $config['port'], $config['key_id'], $config['signature']);
+```
