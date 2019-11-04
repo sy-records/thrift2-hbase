@@ -72,7 +72,14 @@ class Get
         var_dump($gets);
 
 		$rows = ['955235245B2497157248538900037777','95523f245B2497157248551200014976'];
-        $get_rows = $this->aliHbaseThriftService->getRowMultiple($table_name, $rows);
+		$columns = [
+			'family' => "oi",
+			'qualifier' => [
+				'async_pay_status',
+				'create_time'
+			]
+		];
+        $get_rows = $this->aliHbaseThriftService->getRowMultiple("scanface:order", $rows, $columns);
         var_dump($get_rows);
     }
 }

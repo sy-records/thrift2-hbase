@@ -183,12 +183,24 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
 	 * @return array
 	 * @throws \Luffy\Thrift2Hbase\TIOError
 	 */
-	public function getRowMultiple(string $tableName, array $rowKeys = []): array
+	public function getRowMultiple(string $tableName, array $rowKeys = [], array $columns = []): array
 	{
 		$tgets = [];
 		foreach ($rowKeys as $row) {
 			$get = new TGet();
 			$get->row = $row ?? null;
+			$tcolumnArr = [];
+			if (!empty($columns) && is_array($columns)) {
+				$family = $columns['family'] ?? null;
+				foreach ($columns['qualifier'] as $item) {
+					$qualifier = $item ?? null;
+					$tcolumn_obj = new \Luffy\Thrift2Hbase\TColumn();
+					$tcolumn_obj->family = $family;
+					$tcolumn_obj->qualifier = $qualifier;
+					array_push($tcolumnArr, $tcolumn_obj);
+				}
+			}
+			$get->columns = $tcolumnArr;
 			array_push($tgets, $get);
 		}
 		$arr = $this->client->getMultiple($tableName, $tgets);
