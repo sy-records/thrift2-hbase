@@ -98,7 +98,7 @@ class IndexController extends AbstractController
 
 		$res = $client->get("scanface:test", new \Luffy\Thrift2Hbase\TGet(["row"=> "001"]));
 		var_dump($res->columnValues);
-    }
+	}
 }
 ```
 
