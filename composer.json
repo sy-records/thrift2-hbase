@@ -23,10 +23,12 @@
         }
     },
     "require": {
-        "php": ">=7.2",
-        "hyperf/contract": "~1.1.0",
-        "hyperf/utils": "~1.1.0",
-        "psr/container": "^1.0"
+        "php": ">=7.2"
+    },
+    "suggest": {
+        "hyperf/contract": "The contracts of Hyperf.",
+        "hyperf/utils": "A tools package that could help developer solved the problem quickly.",
+        "psr/container": "Common Container Interface (PHP FIG PSR-11)"
     },
     "extra": {
         "hyperf": {
