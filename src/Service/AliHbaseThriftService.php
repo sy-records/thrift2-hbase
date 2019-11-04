@@ -136,7 +136,7 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
 	 * @return array
 	 * @throws \Luffy\Thrift2Hbase\TIOError
 	 */
-    public function getMultiple(string $tableName, array $params = []) : array
+    public function getMultiple(string $tableName, array $params = []): array
     {
 		$tgets = [];
 		foreach ($params as $item) {
@@ -175,6 +175,11 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
 			$tgets_data[$item->row] = $data;
 		}
 		return $tgets_data;
+    }
+
+	public function getRowMultiple(string $tableName, array $params = []): array
+	{
+
     }
 
 	/**
@@ -216,7 +221,6 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
 			$put->timestamp = $item['timestamp'] ?? null;
 
 			$family = $item['family'] ?? null;
-			var_dump($family);
 			$tcolumnValues = [];
 			if (isset($item['columns']) and is_array($item['columns'])) {
 				foreach ($item['columns'] as $key => $column) {
