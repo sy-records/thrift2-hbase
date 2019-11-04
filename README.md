@@ -80,7 +80,7 @@ class IndexController extends AbstractController
 	private $hbase;
 
 	public function index()
-    {
+	{
 		/**
 		 * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
 		 */
