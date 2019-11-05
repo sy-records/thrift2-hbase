@@ -7,6 +7,9 @@ thrift2-hbase component for hyperf.
 
 ```shell
 composer require sy-records/thrift2-hbase -vvv
+
+#生成 classmap
+composer dump-autoload -o
 ```
 
 ## 在 Hyperf 中使用
