@@ -3,7 +3,7 @@ thrift2-hbase component for hyperf.
 
 > 此 repo 为使用阿里云云数据库 Hbase 性能增强版，HBase 增强版使用的 Thrift 接口定义是 HBase 的 `thrift2`
 
-# 安装
+## 安装
 
 ```shell
 composer require sy-records/thrift2-hbase -vvv
@@ -75,33 +75,33 @@ use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftInterface;
 
 class IndexController extends AbstractController
 {
-	/**
-	 * 使用注解时
-	 * @Inject()
-	 * @var AliHbaseThriftInterface
-	 */
-	private $hbase;
+    /**
+     * 使用注解时
+     * @Inject()
+     * @var AliHbaseThriftInterface
+     */
+    private $hbase;
 
-	public function index()
-	{
-		/**
-		 * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
-		 */
-		$client = $this->hbase->getClient();
+    public function index()
+    {
+        /**
+         * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
+         */
+        $client = $this->hbase->getClient();
 
-		/**
-		 * @var $hbase \Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService
-		 */
-		$hbase = make(AliHbaseThriftInterface::class);
+        /**
+         * @var $hbase \Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService
+         */
+        $hbase = make(AliHbaseThriftInterface::class);
 
-		/**
-		 * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
-		 */
-		$client = $hbase->getClient();
+        /**
+         * @var $client \Luffy\Thrift2Hbase\THBaseServiceClient
+         */
+        $client = $hbase->getClient();
 
-		$res = $client->get("scanface:test", new \Luffy\Thrift2Hbase\TGet(["row"=> "001"]));
-		var_dump($res->columnValues);
-	}
+        $res = $client->get("scanface:test", new \Luffy\Thrift2Hbase\TGet(["row" => "001"]));
+        var_dump($res->columnValues);
+    }
 }
 ```
 
@@ -115,10 +115,10 @@ class IndexController extends AbstractController
 
 ```php
 return [
-	'host' => "localhost",
-	'port' => 9190,
-	'key_id' => 'root',
-	'signature' => 'root',
+    'host' => "localhost",
+    'port' => 9190,
+    'key_id' => 'root',
+    'signature' => 'root',
 ];
 ```
 
@@ -127,3 +127,9 @@ return [
 ```php
 $hbase = new Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService($config['host'], $config['port'], $config['key_id'], $config['signature']);
 ```
+
+## 扩展服务
+
+此仓库是作为操作`Hbase`基础库发布的，另有完整的`Hbase`+`Solr`协程支持组件，操作更加便捷。
+
+需付费，如有需要请联系QQ。<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=85464277&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:85464277:51" alt="点此即可联系我" title="点此即可联系我"/></a>
