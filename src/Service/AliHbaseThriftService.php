@@ -9,7 +9,7 @@ namespace Luffy\AliHbaseThrift\Serivce;
 
 
 use Luffy\AliHbaseThrift\Exception\MethodNotFoundException;
-use Thrift\Protocol\TBinaryProtocol;
+use Thrift\Protocol\TBinaryProtocolAccelerated;
 use Thrift\Transport\TBufferedTransport;
 use Thrift\Transport\THttpClient;
 use Luffy\Thrift2Hbase\THBaseServiceClient;
@@ -39,7 +39,7 @@ class AliHbaseThriftService implements AliHbaseThriftInterface
         $socket = new THttpClient($host, $port);
         $socket->addHeaders($headers);
         $transport = new TBufferedTransport($socket);
-        $protocol = new TBinaryProtocol($transport);
+        $protocol = new TBinaryProtocolAccelerated($transport);
         $this->client = new THBaseServiceClient($protocol);
     }
 
