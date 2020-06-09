@@ -128,6 +128,17 @@ return [
 $hbase = new Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService($config['host'], $config['port'], $config['key_id'], $config['signature']);
 ```
 
+## Contributors
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/zzss-utils"><img src="https://avatars3.githubusercontent.com/u/26597775?v=4" width="100px;" alt=""/><br /><sub><b>zhouhua</b></sub></a><br /><a href="https://github.com/sy-records/thrift2-hbase/commits?author=zzss-utils" title="Code">💻</a></td>
+    <td align="center"><a href="http://qq52o.me"><img src="https://avatars3.githubusercontent.com/u/33931153?v=4" width="100px;" alt=""/><br /><sub><b>沈唁</b></sub></a><br /><a href="https://github.com/sy-records/thrift2-hbase/commits?author=sy-records" title="Code">💻</a> <a href="https://github.com/sy-records/thrift2-hbase/commits?author=sy-records" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/hejunrex"><img src="https://avatars3.githubusercontent.com/u/16148193?v=4" width="100px;" alt=""/><br /><sub><b>hejunrex</b></sub></a><br /><a href="https://github.com/sy-records/thrift2-hbase/commits?author=hejunrex" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/starfalling"><img src="https://avatars3.githubusercontent.com/u/532951?v=4" width="100px;" alt=""/><br /><sub><b>starfalling</b></sub></a><br /><a href="https://github.com/sy-records/thrift2-hbase/commits?author=starfalling" title="Code">💻</a></td>
+  </tr>
+</table>
+
 ## 扩展服务
 
 此仓库是作为操作`Hbase`基础库发布的，另有完整的`Hbase`+`Solr`协程支持组件，操作更加便捷。
