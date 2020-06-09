@@ -1,13 +1,17 @@
 <?php
-/**
- * User: lufei
- * Date: 2019/11/1
- * Email: lufei@swoole.com.
- */
 
+declare(strict_types=1);
+/**
+ * This file is part of thrift2-hbase.
+ *
+ * @link     https://github.com/sy-records/thrift2-hbase
+ * @document https://github.com/sy-records/thrift2-hbase
+ * @contact  52o@qq52o.cn
+ * @license  https://github.com/sy-records/thrift2-hbase/blob/master/LICENSE
+ */
 namespace Lufyy\HbaseExample;
 
-require __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . '/../vendor/autoload.php';
 
 use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService;
 
@@ -31,53 +35,53 @@ class Put
 
     public function run()
     {
-        $namespace = "scanface"; // 相当于 mysql 的 库
-        $table_name = "scanface:test";
-        $family = "test";
-        $row_key = "95523f245B2497157248551200014331";
+        $namespace = 'scanface'; // 相当于 mysql 的 库
+        $table_name = 'scanface:test';
+        $family = 'test';
+        $row_key = '95523f245B2497157248551200014331';
 
         $putValueArr = [
-			"async_pay_status" => "2",
-			"pay_way" => "3"
+            'async_pay_status' => '2',
+            'pay_way' => '3',
         ];
         $this->aliHbaseThriftService->putValue($table_name, $row_key, $family, $putValueArr);
 
         $get_row = $this->aliHbaseThriftService->getRow($table_name, $row_key);
         var_dump($get_row);
 
-		$puts_data = [
-			[
-				"row" => "95523f245B2497157248551200014332",
-				"family" => $family,
-				"columns" => [
-					"put_test_1" => "111",
-					"put_test_2" => "222",
-				]
-			],
-			[
-				"row" => "95523f245B2497157248551200014333",
-				"family" => $family,
-				"columns" => [
-					"puts_test_1" => "111",
-					"puts_test_2" => "222",
-				]
-			],
-		];
-		$this->aliHbaseThriftService->putMultiple($table_name, $puts_data);
+        $puts_data = [
+            [
+                'row' => '95523f245B2497157248551200014332',
+                'family' => $family,
+                'columns' => [
+                    'put_test_1' => '111',
+                    'put_test_2' => '222',
+                ],
+            ],
+            [
+                'row' => '95523f245B2497157248551200014333',
+                'family' => $family,
+                'columns' => [
+                    'puts_test_1' => '111',
+                    'puts_test_2' => '222',
+                ],
+            ],
+        ];
+        $this->aliHbaseThriftService->putMultiple($table_name, $puts_data);
 
-		// 验证
-		$gets_data = [
-			[
-				"row" => "95523f245B2497157248551200014332",
-			],
-			[
-				"row" => "95523f245B2497157248551200014333",
-			],
-		];
-		$gets = $this->aliHbaseThriftService->getMultiple($table_name, $gets_data);
-		var_dump($gets);
+        // 验证
+        $gets_data = [
+            [
+                'row' => '95523f245B2497157248551200014332',
+            ],
+            [
+                'row' => '95523f245B2497157248551200014333',
+            ],
+        ];
+        $gets = $this->aliHbaseThriftService->getMultiple($table_name, $gets_data);
+        var_dump($gets);
     }
 }
-$config = include "config.php";
+$config = include 'config.php';
 $get = new Put($config);
 $get->run();

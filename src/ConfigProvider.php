@@ -1,7 +1,14 @@
 <?php
 
 declare(strict_types=1);
-
+/**
+ * This file is part of thrift2-hbase.
+ *
+ * @link     https://github.com/sy-records/thrift2-hbase
+ * @document https://github.com/sy-records/thrift2-hbase
+ * @contact  52o@qq52o.cn
+ * @license  https://github.com/sy-records/thrift2-hbase/blob/master/LICENSE
+ */
 namespace Luffy\AliHbaseThrift;
 
 use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftInterface;
@@ -13,7 +20,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                AliHbaseThriftInterface::class => HbaseFactory::class
+                AliHbaseThriftInterface::class => HbaseFactory::class,
             ],
             'commands' => [
             ],
@@ -24,9 +31,9 @@ class ConfigProvider
                     ],
                     'ignore_annotations' => [
                         'parem',
-                        'generated'
+                        'generated',
                     ],
-                ]
+                ],
             ],
             'publish' => [
                 [

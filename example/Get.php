@@ -1,13 +1,17 @@
 <?php
-/**
- * User: lufei
- * Date: 2019/11/1
- * Email: lufei@swoole.com.
- */
 
+declare(strict_types=1);
+/**
+ * This file is part of thrift2-hbase.
+ *
+ * @link     https://github.com/sy-records/thrift2-hbase
+ * @document https://github.com/sy-records/thrift2-hbase
+ * @contact  52o@qq52o.cn
+ * @license  https://github.com/sy-records/thrift2-hbase/blob/master/LICENSE
+ */
 namespace Lufyy\HbaseExample;
 
-require __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . '/../vendor/autoload.php';
 
 use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService;
 
@@ -31,10 +35,10 @@ class Get
 
     public function run()
     {
-        $namespace = "scanface"; // 相当于 mysql 的 库
-        $table_name = "scanface:test";
-        $family = "test";
-        $row_key = "95523f245B2497157248551200014331";
+        $namespace = 'scanface'; // 相当于 mysql 的 库
+        $table_name = 'scanface:test';
+        $family = 'test';
+        $row_key = '95523f245B2497157248551200014331';
 
         // 通过命名空间查找表名
         $tables = $this->aliHbaseThriftService->getTableNamesByNamespace($namespace);
@@ -46,43 +50,43 @@ class Get
 
         // 查询某个字段
         $columnArray = [
-			[
-				"family" => $family,
-				"qualifier" => "async_pay_status",
-			],
+            [
+                'family' => $family,
+                'qualifier' => 'async_pay_status',
+            ],
         ];
         $data = $this->aliHbaseThriftService->getColumn($table_name, $row_key, 0, $columnArray);
         var_dump($data);
 
         $gets_data = [
-			[
-				"row" => $row_key,
-				"columns" => [
-					[
-						"family" => $family,
-						"qualifier" => "async_pay_status",
-					],
-				]
-			],
-			[
-				"row" => "95523f245B2497157248551200014330"
-			],
-		];
+            [
+                'row' => $row_key,
+                'columns' => [
+                    [
+                        'family' => $family,
+                        'qualifier' => 'async_pay_status',
+                    ],
+                ],
+            ],
+            [
+                'row' => '95523f245B2497157248551200014330',
+            ],
+        ];
         $gets = $this->aliHbaseThriftService->getMultiple($table_name, $gets_data);
         var_dump($gets);
 
-		$rows = ['955235245B2497157248538900037777','95523f245B2497157248551200014976'];
-		$columns = [
-			'family' => "oi",
-			'qualifier' => [
-				'async_pay_status',
-				'create_time'
-			]
-		];
-        $get_rows = $this->aliHbaseThriftService->getRowMultiple("scanface:order", $rows, $columns);
+        $rows = ['955235245B2497157248538900037777', '95523f245B2497157248551200014976'];
+        $columns = [
+            'family' => 'oi',
+            'qualifier' => [
+                'async_pay_status',
+                'create_time',
+            ],
+        ];
+        $get_rows = $this->aliHbaseThriftService->getRowMultiple('scanface:order', $rows, $columns);
         var_dump($get_rows);
     }
 }
-$config = include "config.php";
+$config = include 'config.php';
 $get = new Get($config);
 $get->run();

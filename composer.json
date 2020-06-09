@@ -5,7 +5,8 @@
     "keywords": [
         "php",
         "hyperf",
-        "hbase"
+        "hbase",
+        "aliyun"
     ],
     "description": "thrift for ali hbase+",
     "authors": [
@@ -13,6 +14,11 @@
             "name": "Luffy",
             "email": "52o@qq52o.cn",
             "homepage": "https://qq52o.me"
+        },
+        {
+            "name": "zzss-utils",
+            "email": "823842209@qq.com",
+            "homepage": "https://github.com/zzss-utils"
         }
     ],
     "autoload": {
@@ -25,6 +31,9 @@
     },
     "require": {
         "php": ">=7.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.9"
     },
     "suggest": {
         "hyperf/contract": "The contracts of Hyperf.",
@@ -39,5 +48,8 @@
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true
+    },
+    "scripts": {
+        "cs-fix": "php-cs-fixer fix $1"
     }
 }
