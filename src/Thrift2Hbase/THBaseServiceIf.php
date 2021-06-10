@@ -569,7 +569,7 @@ interface THBaseServiceIf
     public function deleteNamespace($name);
     /**
      * Get a namespace descriptor by name.
-     * @retrun the descriptor
+     * @return the descriptor
      * 
      * 
      * @param string $name name of namespace descriptor
