@@ -77,7 +77,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Hyperf\Di\Annotation\Inject;
-use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftInterface;
+use Luffy\AliHbaseThrift\Service\AliHbaseThriftInterface;
 
 class IndexController extends AbstractController
 {
@@ -96,7 +96,7 @@ class IndexController extends AbstractController
         $client = $this->hbase->getClient();
 
         /**
-         * @var $hbase \Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService
+         * @var $hbase \Luffy\AliHbaseThrift\Service\AliHbaseThriftService
          */
         $hbase = make(AliHbaseThriftInterface::class);
 
@@ -131,7 +131,7 @@ return [
 ### 使用
 
 ```php
-$hbase = new Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService($config['host'], $config['port'], $config['key_id'], $config['signature']);
+$hbase = new Luffy\AliHbaseThrift\Service\AliHbaseThriftService($config['host'], $config['port'], $config['key_id'], $config['signature']);
 ```
 
 ## Contributors

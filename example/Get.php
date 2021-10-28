@@ -14,7 +14,7 @@ namespace Lufyy\HbaseExample;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftService;
+use Luffy\AliHbaseThrift\Service\AliHbaseThriftService;
 
 class Get
 {
