@@ -12,8 +12,8 @@ declare(strict_types=1);
  */
 namespace Luffy\AliHbaseThrift;
 
-use Luffy\AliHbaseThrift\Serivce\AliHbaseThriftInterface;
-use Luffy\AliHbaseThrift\Serivce\HbaseFactory;
+use Luffy\AliHbaseThrift\Service\AliHbaseThriftInterface;
+use Luffy\AliHbaseThrift\Service\HbaseFactory;
 
 class ConfigProvider
 {
