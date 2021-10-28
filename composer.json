@@ -11,9 +11,9 @@
     "description": "thrift for ali hbase+",
     "authors": [
         {
-            "name": "Luffy",
+            "name": "Lu Fei",
             "email": "52o@qq52o.cn",
-            "homepage": "https://qq52o.me"
+            "homepage": "https://lufei.dev"
         },
         {
             "name": "zzss-utils",
@@ -26,14 +26,14 @@
             "Luffy\\AliHbaseThrift\\": "src/",
             "Thrift\\": "src/Thrift/",
             "Luffy\\Thrift2Hbase\\": "src/Thrift2Hbase/",
-            "Luffy\\AliHbaseThrift\\Serivce\\": "src/Service/"
+            "Luffy\\AliHbaseThrift\\Service\\": "src/Service/"
         }
     },
     "require": {
         "php": ">=7.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.9"
+        "friendsofphp/php-cs-fixer": "^3.0"
     },
     "suggest": {
         "hyperf/contract": "The contracts of Hyperf.",
@@ -50,6 +50,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "cs-fix": "php-cs-fixer fix $1"
+        "cs-check": "/usr/bin/env php ./vendor/bin/php-cs-fixer fix --dry-run",
+        "cs-fix": "/usr/bin/env php ./vendor/bin/php-cs-fixer fix"
     }
 }

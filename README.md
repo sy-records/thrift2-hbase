@@ -1,5 +1,11 @@
 # thrift2-hbase
-thrift2-hbase component for hyperf.
+
+thrift2-hbase component for Hyperf.
+
+[![Latest Stable Version](http://poser.pugx.org/sy-records/thrift2-hbase/v)](https://packagist.org/packages/sy-records/thrift2-hbase)
+[![Total Downloads](http://poser.pugx.org/sy-records/thrift2-hbase/downloads)](https://packagist.org/packages/sy-records/thrift2-hbase)
+[![License](http://poser.pugx.org/sy-records/thrift2-hbase/license)](https://packagist.org/packages/sy-records/thrift2-hbase)
+[![PHP Version Require](http://poser.pugx.org/sy-records/thrift2-hbase/require/php)](https://packagist.org/packages/sy-records/thrift2-hbase)
 
 > 此 repo 为使用阿里云云数据库 Hbase 性能增强版，HBase 增强版使用的 Thrift 接口定义是 HBase 的 `thrift2`
 
