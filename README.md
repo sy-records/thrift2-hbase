@@ -148,5 +148,3 @@ $hbase = new Luffy\AliHbaseThrift\Service\AliHbaseThriftService($config['host'],
 ## 扩展服务
 
 此仓库是作为操作`Hbase`基础库发布的，另有完整的`Hbase`+`Solr`协程支持组件，操作更加便捷。
-
-需付费，如有需要请联系QQ。<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=85464277&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:85464277:51" alt="点此即可联系我" title="点此即可联系我"/></a>
